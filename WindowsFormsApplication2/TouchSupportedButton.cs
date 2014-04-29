@@ -7,8 +7,15 @@ using System.Windows.Forms;
 
 namespace NSX39Mog
 {
+    /// <summary>
+    /// Windows8.1のタッチイベントを拾えるボタン
+    /// </summary>
     class TouchSupportedButton:Button
     {
+        /// <summary>
+        /// Window Proc
+        /// </summary>
+        /// <param name="Msg">Windowメッセージ</param>
         protected override void WndProc(ref Message Msg)
         {
             switch(Msg.Msg)

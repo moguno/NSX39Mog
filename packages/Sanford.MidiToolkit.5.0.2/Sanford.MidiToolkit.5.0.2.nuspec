@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Sanford.MidiToolkit</id>
+    <version>5.0.2</version>
+    <title>MIDI Toolkit</title>
+    <authors>Leslie Sanford</authors>
+    <owners>Leslie Sanford</owners>
+    <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://www.codeproject.com/Articles/6228/C-MIDI-Toolkit</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A toolkit for creating MIDI applications.</description>
+    <copyright>Leslie Sanford 2006</copyright>
+    <language>en-US</language>
+    <tags>midi</tags>
+  </metadata>
+</package>

@@ -12,6 +12,7 @@ namespace NSX39Mog
     {
         protected static NSX39 MikuTan = null;
         protected OutputDevice MikuOutDev = null;
+        protected const int CHANNELS = 2;
 
         /// <summary>
         /// シングルトンにしたいのでprotectedのコンストラクタ
@@ -102,6 +103,12 @@ namespace NSX39Mog
                 return;
             }
 
+            /* All Parameter Reset */
+            var AllParamReset = new SysExMessage(new byte[] { 0xf0, 0x43, 0x10, 0x4c, 0x00, 0x00, 0x7f, 0x00, 0xf7 });
+
+            MikuOutDev.Send(AllParamReset);
+
+
             /* XG System ON */
             var XGOn = new SysExMessage(new byte[] { 0xf0, 0x43, 0x10, 0x4c, 0x00, 0x00, 0x7e, 0x00, 0xf7 });
 
@@ -182,9 +189,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            var DepthMsg = new ChannelMessage(ChannelCommand.Controller, 0, 91, Depth);
+            for (int i = 0; i < CHANNELS; i++)
+            {
+                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 91, Depth);
 
-            MikuOutDev.Send(DepthMsg);
+                MikuOutDev.Send(DepthMsg);
+            }
         }
 
 
@@ -210,9 +220,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            var DepthMsg = new ChannelMessage(ChannelCommand.Controller, 0, 93, Depth);
+            for (int i = 0; i < CHANNELS; i++)
+            {
+                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 93, Depth);
 
-            MikuOutDev.Send(DepthMsg);
+                MikuOutDev.Send(DepthMsg);
+            }
         }
 
 
@@ -243,9 +256,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            var DepthMsg = new ChannelMessage(ChannelCommand.Controller, 0, 94, Depth);
+            for (int i = 0; i < CHANNELS; i++)
+            {
+                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 94, Depth);
 
-            MikuOutDev.Send(DepthMsg);
+                MikuOutDev.Send(DepthMsg);
+            }
         }
 
 

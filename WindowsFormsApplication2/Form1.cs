@@ -27,6 +27,11 @@ namespace WindowsFormsApplication2
             );
         }
 
+        /// <summary>
+        /// ポケミクプラグアンドプレイ用のポーリングタイマ処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             NSX39 Miku = NSX39.GetInstance();
@@ -145,6 +150,7 @@ namespace WindowsFormsApplication2
 
             var VarEffects = new List<ComboItem>
             {
+                new ComboItem() {Key = "off", Data = new byte[] {0, 0}},
                 new ComboItem() {Key = "HALL1", Data = new byte[] {1, 0}},
                 new ComboItem() {Key = "HALL2", Data = new byte[] {1, 16}},
                 new ComboItem() {Key = "HALL3", Data = new byte[] {1, 17}},

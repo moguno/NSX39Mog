@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace NSX39Mog
 {
     partial class Form1
     {
@@ -259,7 +259,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(598, 116);
             this.panel3.TabIndex = 1;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             this.panel3.Resize += new System.EventHandler(this.panel2_Resize);
             // 
             // toolStrip1
@@ -274,7 +273,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(598, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // toolStripComboBox1
             // 

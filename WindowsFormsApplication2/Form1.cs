@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
-namespace WindowsFormsApplication2
+namespace NSX39Mog
 {
     public partial class Form1 : Form
     {
@@ -18,6 +18,9 @@ namespace WindowsFormsApplication2
             InitializeComponent();
         }
 
+        /// <summary>
+        /// すべてのコントローラーの設定をポケミクに送る。
+        /// </summary>
         protected void ApplyAll()
         {
             Controllers.ForEach((Controller) =>
@@ -52,9 +55,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -686,60 +686,6 @@ namespace WindowsFormsApplication2
             NSX39.GetInstance().Close();
         }
 
-        private void button15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void panel2_Resize(object sender, EventArgs e)
         {
@@ -749,16 +695,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -766,6 +702,9 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// ピアノウィジェットクラス
+    /// </summary>
     public class Piano
     {
         protected Panel BasePanel;
@@ -776,7 +715,11 @@ namespace WindowsFormsApplication2
 
         protected const int Octaves = 2;
 
-
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="ABasePanel">ピアノを貼り付けるパネル</param>
+        /// <param name="ANoteFunc">鍵盤を押したり離したりしたときの処理</param>
         public Piano(Panel ABasePanel, Action<int, bool> ANoteFunc)
         {
             BasePanel = ABasePanel;
@@ -787,6 +730,9 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// 鍵盤のサイズを調整する。
+        /// </summary>
         public void ResizePianoKeys()
         {
             int WhiteWidth = BasePanel.Width / (Octaves * 7);
@@ -821,6 +767,9 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// 鍵盤用のボタンを生成する。
+        /// </summary>
         protected void CreatePianoKeys()
         {
             for (int i = 0; i < Octaves * 5; i++)
@@ -847,6 +796,12 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// 鍵盤を押したり離したときのイベントを発生させる。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="NoteOn">true：押したとき　false：離したとき</param>
         protected void FireNoteEvent(object sender, MouseEventArgs e, bool NoteOn)
         {
             int index;
@@ -882,12 +837,22 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// 鍵盤が押されたときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void OnMouseDown(object sender, MouseEventArgs e)
         {
             FireNoteEvent(sender, e, true);
         }
 
 
+        /// <summary>
+        /// 鍵盤が離されたときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void OnMouseUp(object sender, MouseEventArgs e)
         {
             FireNoteEvent(sender, e, false);
@@ -895,11 +860,25 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// コンボボックス用の名前とデータを格納するクラス
+    /// </summary>
     public class ComboItem
     {
+        /// <summary>
+        /// コンボボックスに表示する文字列
+        /// </summary>
         public string Key;
+
+        /// <summary>
+        /// 値
+        /// </summary>
         public byte[] Data;
 
+        /// <summary>
+        /// コンボボックスに表示する文字列を返す
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Key;
@@ -907,15 +886,25 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// コントローラの基底クラス
+    /// </summary>
     public class Controller
     {
         protected Action<Controller> OnApply;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
         public Controller(Action<Controller> AOnApply)
         {
             OnApply = AOnApply;
         }
 
+        /// <summary>
+        /// コントローラの値をポケミクに送る
+        /// </summary>
         public void Apply()
         {
             OnApply.Invoke(this);
@@ -923,6 +912,9 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// テキストボックスとボタンから成るコントローラ（主に歌詞用）
+    /// </summary>
     public class TextAndButton : Controller
     {
         protected Panel Group;
@@ -937,6 +929,11 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="AGroup">コントローラ化するグループボックス</param>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
         public TextAndButton(Panel AGroup, Action<Controller> AOnApply)
             : base(AOnApply)
         {
@@ -953,10 +950,19 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// コンボボックスのみのコントローラ（主にプログラムチェンジ用）
+    /// </summary>
     public class ToolComboOnly : Controller
     {
         protected ToolStripComboBox Combo;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="ACombo">コントローラ化するコンボボックス</param>
+        /// <param name="Items">コンボボックスに表示する文字列</param>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
         public ToolComboOnly(ToolStripComboBox ACombo, List<string> Items, Action<Controller> AOnApply)
             : base(AOnApply)
         {
@@ -966,6 +972,10 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// コントローラの初期化
+        /// </summary>
+        /// <param name="Items">コンボボックスに表示する文字列</param>
         protected void Initialize(List<string> Items)
         {
             Combo.Items.AddRange(Items.ToArray());
@@ -989,12 +999,21 @@ namespace WindowsFormsApplication2
     }
 
 
+    /// <summary>
+    /// コンボボックスとスライダーから成るコントローラ（エフェクト用）
+    /// </summary>
     public class ComboAndSlider : Controller
     {
         protected GroupBox Group;
         protected ComboBox Combo;
         protected TrackBar Slider;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="AGroup">コントローラ化するグループボックス</param>
+        /// <param name="Items">コンボボックスに表示する項目</param>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
         public ComboAndSlider(GroupBox AGroup, List<ComboItem> Items, Action<Controller> AOnApply)
             : base(AOnApply)
         {
@@ -1022,6 +1041,10 @@ namespace WindowsFormsApplication2
             }
         }
 
+        /// <summary>
+        /// コントローラの初期化
+        /// </summary>
+        /// <param name="Items">コンボボックスに表示する項目</param>
         public void Initialize(List<ComboItem> Items)
         {
             Combo.Items.Clear();

@@ -3,17 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace WindowsFormsApplication2
+namespace NSX39Mog
 {
+    /// <summary>
+    /// ポケミク制御用クラス
+    /// </summary>
     class NSX39
     {
         protected static NSX39 MikuTan = null;
         protected OutputDevice MikuOutDev = null;
 
+        /// <summary>
+        /// シングルトンにしたいのでprotectedのコンストラクタ
+        /// </summary>
         protected NSX39()
         {
         }
 
+        /// <summary>
+        /// インスタンスを生成する
+        /// </summary>
+        /// <returns>インスタンス</returns>
         public static NSX39 GetInstance()
         {
             if (MikuTan == null)
@@ -24,6 +34,10 @@ namespace WindowsFormsApplication2
             return MikuTan;
         }
 
+        /// <summary>
+        /// 歌詞を送信する
+        /// </summary>
+        /// <param name="Lyrics">歌詞コードの配列</param>
         public void Lyrics(byte[] Lyrics)
         {
             if (!IsActive)
@@ -41,6 +55,14 @@ namespace WindowsFormsApplication2
             MikuOutDev.Send(ExMsg);
         }
 
+
+        /// <summary>
+        /// 音符データを送る
+        /// </summary>
+        /// <param name="NoteOn">true：ノートON false:ノートOFF</param>
+        /// <param name="Channel">MIDIチャンネル</param>
+        /// <param name="NoteNo">MIDIノート番号</param>
+        /// <param name="Velocity">ベロシティ</param>
         public void Note(bool NoteOn, int Channel, int NoteNo, int Velocity)
         {
             if (!IsActive)
@@ -52,6 +74,12 @@ namespace WindowsFormsApplication2
             MikuOutDev.Send(NoteMsg);
         }
 
+
+        /// <summary>
+        /// プログラムチェンジを送る
+        /// </summary>
+        /// <param name="Channel">MIDIチャンネル</param>
+        /// <param name="Program">楽器番号</param>
         public void ProgramChange(int Channel, short Program)
         {
             if (!IsActive)
@@ -63,6 +91,10 @@ namespace WindowsFormsApplication2
             MikuOutDev.Send(PChange);
         }
 
+
+        /// <summary>
+        /// ポケミクをリセットする
+        /// </summary>
         public void Reset()
         {
             if (!IsActive)
@@ -76,6 +108,10 @@ namespace WindowsFormsApplication2
             MikuOutDev.Send(XGOn);
         }
 
+
+        /// <summary>
+        /// ポケミクが接続中か？
+        /// </summary>
         public bool IsActive
         {
             get
@@ -84,6 +120,10 @@ namespace WindowsFormsApplication2
             }
         }
 
+
+        /// <summary>
+        /// ポケミクを閉じる
+        /// </summary>
         public void Close()
         {
             if (MikuOutDev != null)
@@ -95,6 +135,10 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// ポケミクのMIDI IDを探す
+        /// </summary>
+        /// <returns></returns>
         public int GetMikuID()
         {
             int Found = -1;
@@ -116,6 +160,11 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// リバーブを送る
+        /// </summary>
+        /// <param name="Type">種別コード</param>
+        /// <param name="Depth">強さ</param>
         public void Reverb(byte[] Type, short Depth)
         {
             if (!IsActive)
@@ -139,6 +188,11 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// コーラスを送る
+        /// </summary>
+        /// <param name="Type">種別コード</param>
+        /// <param name="Depth">強さ</param>
         public void Chorus(byte[] Type, short Depth)
         {
             if (!IsActive)
@@ -162,6 +216,11 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// バリエーションエフェクトを送る
+        /// </summary>
+        /// <param name="Type">種別コード</param>
+        /// <param name="Depth">強さ</param>
         public void VariationEffect(byte[] Type, short Depth)
         {
             if (!IsActive)
@@ -190,6 +249,10 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// ポケミクが繋がったらデバイスを開く
+        /// </summary>
+        /// <param name="OpenFunc">デバイスを開いた後にやる処理</param>
         public void PlugAndPlay(Action OpenFunc = null)
         {
             if (GetMikuID() == -1)
@@ -214,6 +277,10 @@ namespace WindowsFormsApplication2
         }
 
 
+        /// <summary>
+        /// ポケミクを開く
+        /// </summary>
+        /// <param name="ID">ポケミクのID。-1の場合探索する</param>
         public void Open(int ID = -1)
         {
             if (ID == -1)

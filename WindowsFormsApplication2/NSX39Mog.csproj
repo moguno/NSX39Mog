@@ -7,7 +7,7 @@
     <ProjectGuid>{031B09ED-8890-497C-B5CA-56B9DA7C6823}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication2</RootNamespace>
+    <RootNamespace>NSX39Mog</RootNamespace>
     <AssemblyName>WindowsFormsApplication2</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

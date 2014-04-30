@@ -98,7 +98,7 @@ namespace NSX39Mog
 
             PianoPane = new Piano(panel3, (NoteNo, NoteOn) =>
             {
-                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox4.SelectedItem).Data, 12 * comboBox6.SelectedIndex + NoteNo, 127);
+                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox4.SelectedItem).Data, 12 * comboBox6.SelectedIndex + NoteNo, 100);
             });
 
 

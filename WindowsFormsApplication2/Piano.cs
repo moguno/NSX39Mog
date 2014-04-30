@@ -33,6 +33,11 @@ namespace NSX39Mog
 
             CreatePianoKeys();
             ResizePianoKeys();
+
+            BasePanel.Resize += (sender, e) =>
+                {
+                    ResizePianoKeys();
+                };
         }
 
 

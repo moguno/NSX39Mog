@@ -96,13 +96,19 @@ namespace NSX39Mog
             ));
 
 
-            PianoPane = new Piano(panel3, (NoteNo, NoteOn) =>
+            PianoPane = new Piano(panel7, (NoteNo, NoteOn) =>
             {
-                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox4.SelectedItem).Data, 12 * comboBox6.SelectedIndex + NoteNo, 100);
+                NSX39.GetInstance().Note(NoteOn, 0, 12 * comboBox6.SelectedIndex + NoteNo, 100);
             });
 
 
-            Controllers.Add(new ComboOnly(comboBox5, Constants.Programs, (Obj) =>
+            PianoPane = new Piano(panel8, (NoteNo, NoteOn) =>
+            {
+                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox9.SelectedItem).Data, 12 * comboBox7.SelectedIndex + NoteNo, 100);
+            });
+
+
+            Controllers.Add(new ComboOnly(comboBox8, Constants.Programs, (Obj) =>
             {
                 var This = (ComboOnly)Obj;
 
@@ -138,10 +144,11 @@ namespace NSX39Mog
             }));
 
 
-            comboBox4.Items.AddRange(Constants.Channels.ToArray());
+            comboBox9.Items.AddRange(Constants.Channels.ToArray());
 
-            comboBox4.SelectedIndex = 0;
+            comboBox9.SelectedIndex = 0;
             comboBox6.SelectedIndex = 5;
+            comboBox7.SelectedIndex = 5;
         }
 
 
@@ -153,30 +160,6 @@ namespace NSX39Mog
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             NSX39.GetInstance().Close();
-        }
-
-
-        /// <summary>
-        /// ピアノのリサイズの時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void panel2_Resize(object sender, EventArgs e)
-        {
-            if (PianoPane != null)
-            {
-                PianoPane.ResizePianoKeys();
-            }
-        }
-
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

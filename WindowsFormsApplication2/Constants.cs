@@ -10,7 +10,6 @@ namespace NSX39Mog
     {
         public static List<ComboItem<int>> Channels = new List<ComboItem<int>>()
             {
-                new ComboItem<int> { Key = "Miku", Data = 0 },
                 new ComboItem<int> { Key = "Instrument", Data = 1 },
                 new ComboItem<int> { Key = "Drums", Data = 9 },
             };

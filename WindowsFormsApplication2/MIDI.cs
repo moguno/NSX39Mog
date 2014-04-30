@@ -287,7 +287,15 @@ namespace NSX39Mog
 
                 if (OpenFunc != null)
                 {
-                    OpenFunc.Invoke();
+                    try
+                    {
+                        OpenFunc.Invoke();
+                    }
+                    catch(Exception e)
+                    {
+                        Debug.WriteLine(e.ToString());
+                        Close();
+                    }
                 }
             }
         }

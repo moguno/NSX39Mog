@@ -10,7 +10,7 @@ namespace NSX39Mog
     /// <summary>
     /// コンボボックス用の名前とデータを格納するクラス
     /// </summary>
-    public class ComboItem
+    public class ComboItem<T>
     {
         /// <summary>
         /// コンボボックスに表示する文字列
@@ -20,7 +20,7 @@ namespace NSX39Mog
         /// <summary>
         /// 値
         /// </summary>
-        public byte[] Data;
+        public T Data;
 
         /// <summary>
         /// コンボボックスに表示する文字列を返す
@@ -100,9 +100,9 @@ namespace NSX39Mog
     /// <summary>
     /// コンボボックスのみのコントローラ（主にプログラムチェンジ用）
     /// </summary>
-    public class ToolComboOnly : Controller
+    public class ComboOnly : Controller
     {
-        protected ToolStripComboBox Combo;
+        protected ComboBox Combo;
 
         /// <summary>
         /// コンストラクタ
@@ -110,7 +110,7 @@ namespace NSX39Mog
         /// <param name="ACombo">コントローラ化するコンボボックス</param>
         /// <param name="Items">コンボボックスに表示する文字列</param>
         /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
-        public ToolComboOnly(ToolStripComboBox ACombo, List<string> Items, Action<Controller> AOnApply)
+        public ComboOnly(ComboBox ACombo, List<string> Items, Action<Controller> AOnApply)
             : base(AOnApply)
         {
             Combo = ACombo;
@@ -161,7 +161,7 @@ namespace NSX39Mog
         /// <param name="AGroup">コントローラ化するグループボックス</param>
         /// <param name="Items">コンボボックスに表示する項目</param>
         /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
-        public ComboAndSlider(GroupBox AGroup, List<ComboItem> Items, Action<Controller> AOnApply)
+        public ComboAndSlider(GroupBox AGroup, List<ComboItem<byte[]>> Items, Action<Controller> AOnApply)
             : base(AOnApply)
         {
             Group = AGroup;
@@ -172,11 +172,11 @@ namespace NSX39Mog
             Initialize(Items);
         }
 
-        public ComboItem Item
+        public ComboItem<byte[]> Item
         {
             get
             {
-                return (ComboItem)Combo.SelectedItem;
+                return (ComboItem<byte[]>)Combo.SelectedItem;
             }
         }
 
@@ -192,7 +192,7 @@ namespace NSX39Mog
         /// コントローラの初期化
         /// </summary>
         /// <param name="Items">コンボボックスに表示する項目</param>
-        public void Initialize(List<ComboItem> Items)
+        public void Initialize(List<ComboItem<byte[]>> Items)
         {
             Combo.Items.Clear();
             Combo.Items.AddRange(Items.ToArray());

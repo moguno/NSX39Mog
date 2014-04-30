@@ -12,8 +12,8 @@ namespace NSX39Mog
     {
         protected static NSX39 MikuTan = null;
         protected OutputDevice MikuOutDev = null;
-        protected const int CHANNELS = 2;
-
+        protected List<int> EnableChannels = new List<int> { 0, 1, 9 };
+        
         /// <summary>
         /// シングルトンにしたいのでprotectedのコンストラクタ
         /// </summary>
@@ -189,12 +189,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            for (int i = 0; i < CHANNELS; i++)
-            {
-                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 91, Depth);
+            EnableChannels.ForEach((Channel) =>
+                {
+                    var DepthMsg = new ChannelMessage(ChannelCommand.Controller, Channel, 91, Depth);
 
-                MikuOutDev.Send(DepthMsg);
-            }
+                    MikuOutDev.Send(DepthMsg);
+                });
         }
 
 
@@ -220,12 +220,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            for (int i = 0; i < CHANNELS; i++)
-            {
-                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 93, Depth);
+            EnableChannels.ForEach((Channel) =>
+                {
+                    var DepthMsg = new ChannelMessage(ChannelCommand.Controller, Channel, 93, Depth);
 
-                MikuOutDev.Send(DepthMsg);
-            }
+                    MikuOutDev.Send(DepthMsg);
+                });
         }
 
 
@@ -256,12 +256,12 @@ namespace NSX39Mog
 
             MikuOutDev.Send(ExMsg);
 
-            for (int i = 0; i < CHANNELS; i++)
-            {
-                var DepthMsg = new ChannelMessage(ChannelCommand.Controller, i, 94, Depth);
+            EnableChannels.ForEach((Channel) =>
+                {
+                    var DepthMsg = new ChannelMessage(ChannelCommand.Controller, Channel, 94, Depth);
 
-                MikuOutDev.Send(DepthMsg);
-            }
+                    MikuOutDev.Send(DepthMsg);
+                });
         }
 
 

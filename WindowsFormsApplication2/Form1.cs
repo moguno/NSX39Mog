@@ -98,13 +98,13 @@ namespace NSX39Mog
 
             PianoPane = new Piano(panel3, (NoteNo, NoteOn) =>
             {
-                NSX39.GetInstance().Note(NoteOn, toolStripComboBox1.SelectedIndex, 12 * toolStripComboBox3.SelectedIndex + NoteNo, 127);
+                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox4.SelectedItem).Data, 12 * comboBox6.SelectedIndex + NoteNo, 127);
             });
 
 
-            Controllers.Add(new ToolComboOnly(toolStripComboBox2, Constants.Programs, (Obj) =>
+            Controllers.Add(new ComboOnly(comboBox5, Constants.Programs, (Obj) =>
             {
-                var This = (ToolComboOnly)Obj;
+                var This = (ComboOnly)Obj;
 
                 NSX39.GetInstance().ProgramChange(1, This.Index);
             }));
@@ -138,8 +138,10 @@ namespace NSX39Mog
             }));
 
 
-            toolStripComboBox1.SelectedIndex = 0;
-            toolStripComboBox3.SelectedIndex = 5;
+            comboBox4.Items.AddRange(Constants.Channels.ToArray());
+
+            comboBox4.SelectedIndex = 0;
+            comboBox6.SelectedIndex = 5;
         }
 
 
@@ -165,6 +167,16 @@ namespace NSX39Mog
             {
                 PianoPane.ResizePianoKeys();
             }
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

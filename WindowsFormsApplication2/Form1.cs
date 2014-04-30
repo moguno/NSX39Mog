@@ -140,6 +140,11 @@ namespace NSX39Mog
                     }
                 }
 
+                if (LyricArray.Count == 0)
+                {
+                    LyricArray.Add(Constants.Lyrics["あ"]);
+                }
+
                 NSX39.GetInstance().Lyrics(LyricArray.ToArray());
             }));
 

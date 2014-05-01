@@ -46,9 +46,9 @@ namespace NSX39Mog
         /// </summary>
         public void ResizePianoKeys()
         {
-            int WhiteWidth = BasePanel.Width / (Octaves * 7);
+            int WhiteWidth = BasePanel.Width / WhiteKeys.Count;
 
-            for (int i = 0; i < Octaves * 7; i++)
+            for (int i = 0; i < WhiteKeys.Count; i++)
             {
                 WhiteKeys[i].Top = 0;
                 WhiteKeys[i].Height = BasePanel.Height;
@@ -94,7 +94,7 @@ namespace NSX39Mog
 
             BasePanel.Controls.AddRange(BlackKeys.ToArray());
 
-            for (int i = 0; i < Octaves * 7; i++)
+            for (int i = 0; i < Octaves * 7 + 1; i++)
             {
                 var Key = new TouchSupportedButton();
                 Key.BackColor = Color.White;

@@ -128,6 +128,7 @@
             this.trackBar1.Size = new System.Drawing.Size(134, 45);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.TickFrequency = 16;
+            this.trackBar1.Value = 100;
             // 
             // comboBox1
             // 
@@ -159,6 +160,7 @@
             this.trackBar2.Size = new System.Drawing.Size(134, 45);
             this.trackBar2.TabIndex = 1;
             this.trackBar2.TickFrequency = 16;
+            this.trackBar2.Value = 100;
             // 
             // comboBox2
             // 
@@ -190,6 +192,7 @@
             this.trackBar3.Size = new System.Drawing.Size(134, 45);
             this.trackBar3.TabIndex = 1;
             this.trackBar3.TickFrequency = 16;
+            this.trackBar3.Value = 100;
             // 
             // comboBox3
             // 

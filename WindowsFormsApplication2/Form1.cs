@@ -244,6 +244,21 @@ namespace NSX39Mog
                     }
                 }));
 
+            var VibTypes = new ComboItem<byte>[] {
+                new ComboItem<byte>() { Key = "normal", Data = 0x02 },
+                new ComboItem<byte>() { Key = "extreme", Data = 0x00 },
+                new ComboItem<byte>() { Key = "fast", Data = 0x01 },
+                new ComboItem<byte>() { Key = "slight", Data = 0x03 },
+            };
+
+            Controllers.Add(new ComboOnly(comboBox4, VibTypes.Select((a) => a.Key).ToList(), (Obj) =>
+            {
+                var This = (ComboOnly)Obj;
+
+                NSX39.GetInstance().NRPN(0, 0x70, 0x03, VibTypes[This.Index].Data);
+            }));
+
+            comboBox4.SelectedIndex = 0;
 
             comboBox9.Items.AddRange(Constants.Channels.ToArray());
 
@@ -270,6 +285,11 @@ namespace NSX39Mog
 
         private void touchSupportedButton1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

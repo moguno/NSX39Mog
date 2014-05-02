@@ -105,6 +105,29 @@ namespace NSX39Mog
         }
 
 
+        public void NRPN(int Channel, short MSB, short LSB, short Data)
+        {
+            if (!IsActive)
+            {
+                return;
+            }
+
+            var CCs = new List<ChannelMessage>();
+
+            CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 99, MSB));
+            CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 98, LSB));
+            CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 6, Data));
+
+            CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 101, 127));
+            CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 100, 127));
+
+            CCs.ForEach((Msg) =>
+                {
+                    MikuOutDev.Send(Msg);
+                });
+        }
+
+
         /// <summary>
         /// ポケミクをリセットする
         /// </summary>

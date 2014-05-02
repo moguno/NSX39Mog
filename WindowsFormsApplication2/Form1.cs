@@ -198,6 +198,8 @@ namespace NSX39Mog
                         else
                         {
                             Error = new Tuple<int, int>(i, 1);
+
+                            IsMainCharProcessing = false;
                         }
 
                         if (Error != null)

@@ -220,7 +220,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(444, 34);
             this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "あいう";
+            this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button1

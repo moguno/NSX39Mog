@@ -10,7 +10,7 @@ namespace NSX39Mog
     /// <summary>
     /// Windows8.1のタッチイベントを拾えるボタン
     /// </summary>
-    class TouchSupportedButton:Button
+    public class TouchSupportedButton:Button
     {
         /// <summary>
         /// Window Proc

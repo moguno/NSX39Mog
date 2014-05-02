@@ -93,6 +93,18 @@ namespace NSX39Mog
         }
 
 
+        public void ControlChange(int Channel, short Type, short Value)
+        {
+            if (!IsActive)
+            {
+                return;
+            }
+
+            var CC = new ChannelMessage(ChannelCommand.Controller, Channel, Type, Value);
+            MikuOutDev.Send(CC);
+        }
+
+
         /// <summary>
         /// ポケミクをリセットする
         /// </summary>

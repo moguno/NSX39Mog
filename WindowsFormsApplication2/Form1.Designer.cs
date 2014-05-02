@@ -62,6 +62,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.touchSupportedButton2 = new NSX39Mog.TouchSupportedButton();
+            this.touchSupportedButton1 = new NSX39Mog.TouchSupportedButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -295,14 +297,15 @@
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 36);
+            this.panel8.Location = new System.Drawing.Point(0, 42);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(619, 147);
+            this.panel8.Size = new System.Drawing.Size(619, 141);
             this.panel8.TabIndex = 4;
             // 
             // panel6
             // 
             this.panel6.AutoSize = true;
+            this.panel6.Controls.Add(this.touchSupportedButton2);
             this.panel6.Controls.Add(this.comboBox7);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.comboBox8);
@@ -310,7 +313,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(619, 36);
+            this.panel6.Size = new System.Drawing.Size(619, 42);
             this.panel6.TabIndex = 3;
             // 
             // comboBox7
@@ -327,7 +330,7 @@
             "6",
             "7",
             "8"});
-            this.comboBox7.Location = new System.Drawing.Point(423, 6);
+            this.comboBox7.Location = new System.Drawing.Point(543, 6);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(70, 27);
             this.comboBox7.TabIndex = 3;
@@ -336,7 +339,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(374, 9);
+            this.label2.Location = new System.Drawing.Point(494, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 19);
             this.label2.TabIndex = 2;
@@ -347,7 +350,7 @@
             this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox8.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(139, 6);
+            this.comboBox8.Location = new System.Drawing.Point(259, 6);
             this.comboBox8.Name = "comboBox8";
             this.comboBox8.Size = new System.Drawing.Size(229, 27);
             this.comboBox8.TabIndex = 1;
@@ -357,7 +360,7 @@
             this.comboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox9.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(12, 6);
+            this.comboBox9.Location = new System.Drawing.Point(132, 6);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(121, 27);
             this.comboBox9.TabIndex = 0;
@@ -375,28 +378,29 @@
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 36);
+            this.panel7.Location = new System.Drawing.Point(0, 42);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(619, 147);
+            this.panel7.Size = new System.Drawing.Size(619, 141);
             this.panel7.TabIndex = 4;
             // 
             // panel4
             // 
             this.panel4.AutoSize = true;
+            this.panel4.Controls.Add(this.touchSupportedButton1);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.comboBox6);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(619, 36);
+            this.panel4.Size = new System.Drawing.Size(619, 42);
             this.panel4.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(9, 9);
+            this.label3.Location = new System.Drawing.Point(129, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 19);
             this.label3.TabIndex = 4;
@@ -416,7 +420,7 @@
             "6",
             "7",
             "8"});
-            this.comboBox6.Location = new System.Drawing.Point(423, 6);
+            this.comboBox6.Location = new System.Drawing.Point(543, 6);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(70, 27);
             this.comboBox6.TabIndex = 3;
@@ -425,11 +429,31 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(374, 9);
+            this.label1.Location = new System.Drawing.Point(494, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "Oct:";
+            // 
+            // touchSupportedButton2
+            // 
+            this.touchSupportedButton2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.touchSupportedButton2.Location = new System.Drawing.Point(5, 3);
+            this.touchSupportedButton2.Name = "touchSupportedButton2";
+            this.touchSupportedButton2.Size = new System.Drawing.Size(46, 36);
+            this.touchSupportedButton2.TabIndex = 6;
+            this.touchSupportedButton2.Text = "MOD";
+            this.touchSupportedButton2.UseVisualStyleBackColor = false;
+            // 
+            // touchSupportedButton1
+            // 
+            this.touchSupportedButton1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.touchSupportedButton1.Location = new System.Drawing.Point(5, 3);
+            this.touchSupportedButton1.Name = "touchSupportedButton1";
+            this.touchSupportedButton1.Size = new System.Drawing.Size(46, 36);
+            this.touchSupportedButton1.TabIndex = 5;
+            this.touchSupportedButton1.Text = "MOD";
+            this.touchSupportedButton1.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -509,6 +533,8 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private TouchSupportedButton touchSupportedButton2;
+        private TouchSupportedButton touchSupportedButton1;
 
     }
 }

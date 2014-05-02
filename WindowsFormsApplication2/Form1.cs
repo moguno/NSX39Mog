@@ -211,6 +211,39 @@ namespace NSX39Mog
                     return ErrorPos.ToArray();
                 }));
 
+            Controllers.Add(new ToggleAndTouchButton(touchSupportedButton1, (Obj) =>
+                {
+                    var This = (ToggleAndTouchButton)Obj;
+
+                    if (This.On)
+                    {
+                        touchSupportedButton1.BackColor = Color.Red;
+                        NSX39.GetInstance().ControlChange(0, 1, 100);
+                    }
+                    else
+                    {
+                        touchSupportedButton1.BackColor = SystemColors.ButtonShadow;
+                        NSX39.GetInstance().ControlChange(0, 1, 0);
+                    }
+                }));
+
+
+            Controllers.Add(new ToggleAndTouchButton(touchSupportedButton2, (Obj) =>
+                {
+                    var This = (ToggleAndTouchButton)Obj;
+
+                    if (This.On)
+                    {
+                        touchSupportedButton2.BackColor = Color.Red;
+                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 100);
+                    }
+                    else
+                    {
+                        touchSupportedButton2.BackColor = SystemColors.ButtonShadow;
+                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 0);
+                    }
+                }));
+
 
             comboBox9.Items.AddRange(Constants.Channels.ToArray());
 
@@ -233,6 +266,10 @@ namespace NSX39Mog
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void touchSupportedButton1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

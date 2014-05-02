@@ -97,10 +97,10 @@ namespace NSX39Mog
             ApplyButton.Click += (sender, e) =>
             {
                 ACheckError.Invoke(XText.Text).ToList<Tuple<int, int>>().ForEach((ErrorRange) =>
-                    {
-                        XText.Select(ErrorRange.Item1, ErrorRange.Item2);
-                        XText.SelectionColor = Color.Red;
-                    });
+                {
+                    XText.Select(ErrorRange.Item1, ErrorRange.Item2);
+                    XText.SelectionColor = Color.Red;
+                });
 
                 XText.Select(0, 0);
 
@@ -108,14 +108,76 @@ namespace NSX39Mog
             };
 
             XText.GotFocus += (sender, e) =>
-                {
-                    int CursorPos = XText.SelectionStart;
+            {
+                int CursorPos = XText.SelectionStart;
 
-                    XText.SelectAll();
-                    XText.SelectionColor = Color.Black;
-                    XText.Select(CursorPos, 0);
+                XText.SelectAll();
+                XText.SelectionColor = Color.Black;
+                XText.Select(CursorPos, 0);
+            };
+        }
+    }
+
+
+    public class ToggleAndTouchButton : Controller
+    {
+        protected TouchSupportedButton Button;
+        protected bool TouchMode = false;
+        protected bool XOn = false;
+        
+        public bool On
+        {
+            get
+            {
+                return XOn;
+            }
+        }
+
+
+        protected void FireButtonEvent(object sender, MouseEventArgs e, bool SwitchOn)
+        {
+            // タッチスクリーン対策
+            if (e.Button == MouseButtons.None)
+            {
+                TouchMode = true;
+            }
+            else
+            {
+                return;
+            }
+
+            XOn = SwitchOn;
+
+            Apply();
+        }
+
+
+        public ToggleAndTouchButton(TouchSupportedButton AButton, Action<Controller> AOnApply)
+            : base(AOnApply)
+        {
+            Button = AButton;
+
+            Button.MouseDown += (sender, e) =>
+                {
+                    FireButtonEvent(sender, e, true);
+                };
+
+            Button.MouseUp += (sender, e) =>
+                {
+                    FireButtonEvent(sender, e, false);
+                };
+
+            Button.Click += (sender, e) =>
+                {
+                    if (!TouchMode)
+                    {
+                        XOn = !XOn;
+
+                        Apply();
+                    }
                 };
         }
+
     }
 
 

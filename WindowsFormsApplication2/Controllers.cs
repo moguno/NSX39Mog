@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,13 +61,14 @@ namespace NSX39Mog
 
 
     /// <summary>
-    /// テキストボックスとボタンから成るコントローラ（主に歌詞用）
+    /// リッチテキストボックスとボタンから成るコントローラ（主に歌詞用）
     /// </summary>
     public class TextAndButton : Controller
     {
         protected Panel Group;
-        protected TextBox XText;
+        protected RichTextBox XText;
         protected Button ApplyButton;
+        protected Func<string, Tuple<int, int>[]> CheckError = null;
 
         public string Text
         {
@@ -81,18 +83,38 @@ namespace NSX39Mog
         /// </summary>
         /// <param name="AGroup">コントローラ化するグループボックス</param>
         /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
-        public TextAndButton(Panel AGroup, Action<Controller> AOnApply)
+        public TextAndButton(Panel AGroup, Action<Controller> AOnApply, Func<string, Tuple<int, int>[]> ACheckError)
             : base(AOnApply)
         {
             Group = AGroup;
 
-            XText = Group.Controls.OfType<TextBox>().ElementAt<TextBox>(0);
+            XText = Group.Controls.OfType<RichTextBox>().ElementAt<RichTextBox>(0);
             ApplyButton = Group.Controls.OfType<Button>().ElementAt<Button>(0);
+
+            CheckError = ACheckError;
+
 
             ApplyButton.Click += (sender, e) =>
             {
+                ACheckError.Invoke(XText.Text).ToList<Tuple<int, int>>().ForEach((ErrorRange) =>
+                    {
+                        XText.Select(ErrorRange.Item1, ErrorRange.Item2);
+                        XText.SelectionColor = Color.Red;
+                    });
+
+                XText.Select(0, 0);
+
                 Apply();
             };
+
+            XText.GotFocus += (sender, e) =>
+                {
+                    int CursorPos = XText.SelectionStart;
+
+                    XText.SelectAll();
+                    XText.SelectionColor = Color.Black;
+                    XText.Select(CursorPos, 0);
+                };
         }
     }
 

@@ -33,13 +33,10 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -62,16 +59,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
+            this.hScrollBar3 = new System.Windows.Forms.HScrollBar();
             this.touchSupportedButton2 = new NSX39Mog.TouchSupportedButton();
             this.touchSupportedButton1 = new NSX39Mog.TouchSupportedButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -95,7 +92,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(625, 178);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(625, 154);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -107,30 +104,20 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(619, 125);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(619, 101);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.trackBar1);
+            this.groupBox1.Controls.Add(this.hScrollBar1);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(146, 119);
+            this.groupBox1.Size = new System.Drawing.Size(155, 95);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "リバーブ";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 56);
-            this.trackBar1.Maximum = 127;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(134, 45);
-            this.trackBar1.TabIndex = 1;
-            this.trackBar1.TickFrequency = 16;
-            this.trackBar1.Value = 100;
             // 
             // comboBox1
             // 
@@ -139,30 +126,20 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(6, 18);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
+            this.comboBox1.Size = new System.Drawing.Size(143, 27);
             this.comboBox1.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
-            this.groupBox2.Controls.Add(this.trackBar2);
+            this.groupBox2.Controls.Add(this.hScrollBar2);
             this.groupBox2.Controls.Add(this.comboBox2);
-            this.groupBox2.Location = new System.Drawing.Point(155, 3);
+            this.groupBox2.Location = new System.Drawing.Point(164, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(146, 119);
+            this.groupBox2.Size = new System.Drawing.Size(155, 95);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "コーラス";
-            // 
-            // trackBar2
-            // 
-            this.trackBar2.Location = new System.Drawing.Point(6, 56);
-            this.trackBar2.Maximum = 127;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(134, 45);
-            this.trackBar2.TabIndex = 1;
-            this.trackBar2.TickFrequency = 16;
-            this.trackBar2.Value = 100;
             // 
             // comboBox2
             // 
@@ -171,30 +148,20 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(6, 18);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 27);
+            this.comboBox2.Size = new System.Drawing.Size(143, 27);
             this.comboBox2.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
-            this.groupBox3.Controls.Add(this.trackBar3);
+            this.groupBox3.Controls.Add(this.hScrollBar3);
             this.groupBox3.Controls.Add(this.comboBox3);
-            this.groupBox3.Location = new System.Drawing.Point(307, 3);
+            this.groupBox3.Location = new System.Drawing.Point(325, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(202, 119);
+            this.groupBox3.Size = new System.Drawing.Size(202, 95);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "バリエーション";
-            // 
-            // trackBar3
-            // 
-            this.trackBar3.Location = new System.Drawing.Point(6, 56);
-            this.trackBar3.Maximum = 127;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(134, 45);
-            this.trackBar3.TabIndex = 1;
-            this.trackBar3.TickFrequency = 16;
-            this.trackBar3.Value = 100;
             // 
             // comboBox3
             // 
@@ -212,7 +179,7 @@
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 134);
+            this.panel1.Location = new System.Drawing.Point(3, 110);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(619, 41);
             this.panel1.TabIndex = 2;
@@ -264,9 +231,9 @@
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 178);
+            this.panel2.Location = new System.Drawing.Point(0, 154);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(625, 378);
+            this.panel2.Size = new System.Drawing.Size(625, 402);
             this.panel2.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -281,7 +248,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(625, 378);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(625, 402);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel5
@@ -289,9 +256,9 @@
             this.panel5.Controls.Add(this.panel8);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 192);
+            this.panel5.Location = new System.Drawing.Point(3, 204);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(619, 183);
+            this.panel5.Size = new System.Drawing.Size(619, 195);
             this.panel5.TabIndex = 1;
             // 
             // panel8
@@ -299,7 +266,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 42);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(619, 141);
+            this.panel8.Size = new System.Drawing.Size(619, 153);
             this.panel8.TabIndex = 4;
             // 
             // panel6
@@ -372,7 +339,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(619, 183);
+            this.panel3.Size = new System.Drawing.Size(619, 195);
             this.panel3.TabIndex = 0;
             // 
             // panel7
@@ -380,7 +347,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 42);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(619, 141);
+            this.panel7.Size = new System.Drawing.Size(619, 153);
             this.panel7.TabIndex = 4;
             // 
             // panel4
@@ -435,6 +402,36 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Oct:";
             // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.LargeChange = 28;
+            this.hScrollBar1.Location = new System.Drawing.Point(6, 48);
+            this.hScrollBar1.Maximum = 127;
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(143, 32);
+            this.hScrollBar1.TabIndex = 2;
+            this.hScrollBar1.Value = 100;
+            // 
+            // hScrollBar2
+            // 
+            this.hScrollBar2.LargeChange = 28;
+            this.hScrollBar2.Location = new System.Drawing.Point(6, 48);
+            this.hScrollBar2.Maximum = 127;
+            this.hScrollBar2.Name = "hScrollBar2";
+            this.hScrollBar2.Size = new System.Drawing.Size(143, 32);
+            this.hScrollBar2.TabIndex = 3;
+            this.hScrollBar2.Value = 100;
+            // 
+            // hScrollBar3
+            // 
+            this.hScrollBar3.LargeChange = 28;
+            this.hScrollBar3.Location = new System.Drawing.Point(6, 48);
+            this.hScrollBar3.Maximum = 127;
+            this.hScrollBar3.Name = "hScrollBar3";
+            this.hScrollBar3.Size = new System.Drawing.Size(143, 32);
+            this.hScrollBar3.TabIndex = 4;
+            this.hScrollBar3.Value = 100;
+            // 
             // touchSupportedButton2
             // 
             this.touchSupportedButton2.BackColor = System.Drawing.SystemColors.ButtonShadow;
@@ -473,14 +470,8 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -504,13 +495,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TrackBar trackBar3;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
@@ -535,6 +523,9 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private TouchSupportedButton touchSupportedButton2;
         private TouchSupportedButton touchSupportedButton1;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.HScrollBar hScrollBar2;
+        private System.Windows.Forms.HScrollBar hScrollBar3;
 
     }
 }

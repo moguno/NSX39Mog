@@ -237,7 +237,7 @@ namespace NSX39Mog
     {
         protected GroupBox Group;
         protected ComboBox Combo;
-        protected TrackBar Slider;
+        protected ScrollBar Slider;
 
         /// <summary>
         /// コンストラクタ
@@ -251,7 +251,7 @@ namespace NSX39Mog
             Group = AGroup;
 
             Combo = Group.Controls.OfType<ComboBox>().ElementAt<ComboBox>(0);
-            Slider = Group.Controls.OfType<TrackBar>().ElementAt<TrackBar>(0);
+            Slider = Group.Controls.OfType<ScrollBar>().ElementAt<ScrollBar>(0);
 
             Initialize(Items);
         }

@@ -81,7 +81,7 @@ namespace NSX39Mog
         /// </summary>
         /// <param name="Channel">MIDIチャンネル</param>
         /// <param name="Program">楽器番号</param>
-        public void ProgramChange(int Channel, short Program)
+        public void ProgramChange(int Channel, byte Program)
         {
             if (!IsActive)
             {
@@ -99,7 +99,7 @@ namespace NSX39Mog
         /// <param name="Channel">MIDIチャンネル</param>
         /// <param name="Type">CC番号</param>
         /// <param name="Value">値</param>
-        public void ControlChange(int Channel, short Type, short Value)
+        public void ControlChange(int Channel, byte Type, byte Value)
         {
             if (!IsActive)
             {
@@ -115,10 +115,10 @@ namespace NSX39Mog
         /// NRPNを送信する
         /// </summary>
         /// <param name="Channel">MIDIチャンネル</param>
-        /// <param name="MSB">上位バイト（ワード？）</param>
-        /// <param name="LSB">下位バイト（ワード？）</param>
+        /// <param name="MSB">上位バイト</param>
+        /// <param name="LSB">下位バイト</param>
         /// <param name="Data">値</param>
-        public void NRPN(int Channel, short MSB, short LSB, short Data)
+        public void NRPN(int Channel, byte MSB, byte LSB, byte Data)
         {
             if (!IsActive)
             {
@@ -221,7 +221,7 @@ namespace NSX39Mog
         /// </summary>
         /// <param name="Type">種別コード</param>
         /// <param name="Depth">強さ</param>
-        public void Reverb(byte[] Type, short Depth)
+        public void Reverb(byte[] Type, byte Depth)
         {
             if (!IsActive)
             {
@@ -252,7 +252,7 @@ namespace NSX39Mog
         /// </summary>
         /// <param name="Type">種別コード</param>
         /// <param name="Depth">強さ</param>
-        public void Chorus(byte[] Type, short Depth)
+        public void Chorus(byte[] Type, byte Depth)
         {
             if (!IsActive)
             {
@@ -283,7 +283,7 @@ namespace NSX39Mog
         /// </summary>
         /// <param name="Type">種別コード</param>
         /// <param name="Depth">強さ</param>
-        public void VariationEffect(byte[] Type, short Depth)
+        public void VariationEffect(byte[] Type, byte Depth)
         {
             if (!IsActive)
             {

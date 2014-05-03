@@ -198,7 +198,7 @@ namespace NSX39Mog
     /// <summary>
     /// コンボボックスのみのコントローラ（主にプログラムチェンジ用）
     /// </summary>
-    public class ComboOnly : Controller
+    public class ComboOnly<T> : Controller
     {
         protected ComboBox Combo;
 
@@ -208,7 +208,7 @@ namespace NSX39Mog
         /// <param name="ACombo">コントローラ化するコンボボックス</param>
         /// <param name="Items">コンボボックスに表示する文字列</param>
         /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
-        public ComboOnly(ComboBox ACombo, List<string> Items, Action<Controller> AOnApply)
+        public ComboOnly(ComboBox ACombo, List<ComboItem<T>> Items, Action<Controller> AOnApply)
             : base(AOnApply)
         {
             Combo = ACombo;
@@ -221,7 +221,7 @@ namespace NSX39Mog
         /// コントローラの初期化
         /// </summary>
         /// <param name="Items">コンボボックスに表示する文字列</param>
-        protected void Initialize(List<string> Items)
+        protected void Initialize(List<ComboItem<T>> Items)
         {
             Combo.Items.AddRange(Items.ToArray());
             Combo.SelectedIndex = 0;
@@ -232,15 +232,13 @@ namespace NSX39Mog
             };
         }
 
-
-        public short Index
+        public ComboItem<T> Item
         {
             get
             {
-                return (short)Combo.SelectedIndex;
+                return (ComboItem<T>)Combo.SelectedItem;
             }
         }
-
     }
 
 
@@ -278,11 +276,11 @@ namespace NSX39Mog
             }
         }
 
-        public short Value
+        public byte Value
         {
             get
             {
-                return (short)Slider.Value;
+                return (byte)Slider.Value;
             }
         }
 

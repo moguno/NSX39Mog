@@ -219,11 +219,11 @@ namespace NSX39Mog
             });
 
 
-            Controllers.Add(new ComboOnly(comboBox8, Constants.Programs, (Obj) =>
+            Controllers.Add(new ComboOnly<byte>(comboBox8, Constants.Programs, (Obj) =>
             {
-                var This = (ComboOnly)Obj;
+                var This = (ComboOnly<byte>)Obj;
 
-                NSX39.GetInstance().ProgramChange(1, This.Index);
+                NSX39.GetInstance().ProgramChange(1, This.Item.Data);
             }));
 
 
@@ -267,23 +267,16 @@ namespace NSX39Mog
                 }
             }));
 
-            var VibTypes = new ComboItem<byte>[] {
-                new ComboItem<byte>() { Key = "normal", Data = 0x02 },
-                new ComboItem<byte>() { Key = "extreme", Data = 0x00 },
-                new ComboItem<byte>() { Key = "fast", Data = 0x01 },
-                new ComboItem<byte>() { Key = "slight", Data = 0x03 },
-            };
-
-            Controllers.Add(new ComboOnly(comboBox4, VibTypes.Select((a) => a.Key).ToList(), (Obj) =>
+            Controllers.Add(new ComboOnly<byte>(comboBox4, Constants.VibTypes, (Obj) =>
             {
-                var This = (ComboOnly)Obj;
+                var This = (ComboOnly<byte>)Obj;
 
-                NSX39.GetInstance().NRPN(0, 0x70, 0x03, VibTypes[This.Index].Data);
+                NSX39.GetInstance().NRPN(0, 0x70, 0x03, This.Item.Data);
             }));
 
             comboBox4.SelectedIndex = 0;
 
-            comboBox9.Items.AddRange(Constants.Channels.ToArray());
+            comboBox9.Items.AddRange(Constants.Channels);
 
             comboBox9.SelectedIndex = 0;
             comboBox6.SelectedIndex = 5;
@@ -299,20 +292,6 @@ namespace NSX39Mog
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             NSX39.GetInstance().Close();
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void touchSupportedButton1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

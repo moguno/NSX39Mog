@@ -38,6 +38,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.touchSupportedButton2 = new NSX39Mog.TouchSupportedButton();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
@@ -45,6 +46,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.touchSupportedButton1 = new NSX39Mog.TouchSupportedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,8 +70,6 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.touchSupportedButton2 = new NSX39Mog.TouchSupportedButton();
-            this.touchSupportedButton1 = new NSX39Mog.TouchSupportedButton();
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -172,6 +172,16 @@
             this.panel6.Size = new System.Drawing.Size(619, 42);
             this.panel6.TabIndex = 3;
             // 
+            // touchSupportedButton2
+            // 
+            this.touchSupportedButton2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.touchSupportedButton2.Location = new System.Drawing.Point(5, 3);
+            this.touchSupportedButton2.Name = "touchSupportedButton2";
+            this.touchSupportedButton2.Size = new System.Drawing.Size(46, 36);
+            this.touchSupportedButton2.TabIndex = 6;
+            this.touchSupportedButton2.Text = "MOD";
+            this.touchSupportedButton2.UseVisualStyleBackColor = false;
+            // 
             // comboBox7
             // 
             this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -252,6 +262,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(619, 42);
             this.panel4.TabIndex = 3;
+            // 
+            // touchSupportedButton1
+            // 
+            this.touchSupportedButton1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.touchSupportedButton1.Location = new System.Drawing.Point(5, 3);
+            this.touchSupportedButton1.Name = "touchSupportedButton1";
+            this.touchSupportedButton1.Size = new System.Drawing.Size(46, 36);
+            this.touchSupportedButton1.TabIndex = 5;
+            this.touchSupportedButton1.Text = "MOD";
+            this.touchSupportedButton1.UseVisualStyleBackColor = false;
             // 
             // label3
             // 
@@ -516,26 +536,6 @@
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 27);
             this.comboBox4.TabIndex = 0;
-            // 
-            // touchSupportedButton2
-            // 
-            this.touchSupportedButton2.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.touchSupportedButton2.Location = new System.Drawing.Point(5, 3);
-            this.touchSupportedButton2.Name = "touchSupportedButton2";
-            this.touchSupportedButton2.Size = new System.Drawing.Size(46, 36);
-            this.touchSupportedButton2.TabIndex = 6;
-            this.touchSupportedButton2.Text = "MOD";
-            this.touchSupportedButton2.UseVisualStyleBackColor = false;
-            // 
-            // touchSupportedButton1
-            // 
-            this.touchSupportedButton1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.touchSupportedButton1.Location = new System.Drawing.Point(5, 3);
-            this.touchSupportedButton1.Name = "touchSupportedButton1";
-            this.touchSupportedButton1.Size = new System.Drawing.Size(46, 36);
-            this.touchSupportedButton1.TabIndex = 5;
-            this.touchSupportedButton1.Text = "MOD";
-            this.touchSupportedButton1.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 

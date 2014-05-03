@@ -305,4 +305,37 @@ namespace NSX39Mog
             };
         }
     }
+
+
+    /// <summary>
+    /// スライダーのみのコントローラ
+    /// </summary>
+    public class SliderOnly : Controller
+    {
+        protected ScrollBar Slider;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="ASlider">コントローラ化するスクロールバー</param>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
+        public SliderOnly(ScrollBar ASlider, Action<Controller> AOnApply)
+            : base(AOnApply)
+        {
+            Slider = ASlider;
+
+            Slider.ValueChanged += (sender, e) =>
+            {
+                Apply();
+            };
+        }
+
+        public byte Value
+        {
+            get
+            {
+                return (byte)Slider.Value;
+            }
+        }
+    }
 }

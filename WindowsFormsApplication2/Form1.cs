@@ -181,98 +181,96 @@ namespace NSX39Mog
         {
 
             Controllers.Add(new ComboAndSlider(groupBox1, Constants.Reverbs, (Obj) =>
-            {
-                var This = (ComboAndSlider)Obj;
+                {
+                    var This = (ComboAndSlider)Obj;
 
-                NSX39.GetInstance().Reverb(This.Item.Data, This.Value);
-            }
-                ));
+                    NSX39.GetInstance().Reverb(This.Item.Data, This.Value);
+                }));
 
 
             Controllers.Add(new ComboAndSlider(groupBox2, Constants.Choruses, (Obj) =>
-            {
-                var This = (ComboAndSlider)Obj;
+                {
+                    var This = (ComboAndSlider)Obj;
 
-                NSX39.GetInstance().Chorus(This.Item.Data, This.Value);
-            }
-                ));
+                    NSX39.GetInstance().Chorus(This.Item.Data, This.Value);
+                }));
 
 
             Controllers.Add(new ComboAndSlider(groupBox3, Constants.VarEffects, (Obj) =>
-            {
-                var This = (ComboAndSlider)Obj;
+                {
+                    var This = (ComboAndSlider)Obj;
 
-                NSX39.GetInstance().VariationEffect(This.Item.Data, This.Value);
-            }
-                ));
+                    NSX39.GetInstance().VariationEffect(This.Item.Data, This.Value);
+                }));
 
 
             PianoPane = new Piano(panel7, (NoteNo, NoteOn) =>
-            {
-                NSX39.GetInstance().Note(NoteOn, 0, 12 * comboBox6.SelectedIndex + NoteNo, 100);
-            });
+                {
+                    NSX39.GetInstance().Note(NoteOn, 0, 12 * comboBox6.SelectedIndex + NoteNo, 100);
+                });
 
 
             PianoPane = new Piano(panel8, (NoteNo, NoteOn) =>
-            {
-                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox9.SelectedItem).Data, 12 * comboBox7.SelectedIndex + NoteNo, 100);
-            });
+                {
+                    NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox9.SelectedItem).Data, 12 * comboBox7.SelectedIndex + NoteNo, 100);
+                });
 
 
             Controllers.Add(new ComboOnly<byte>(comboBox8, Constants.Programs, (Obj) =>
-            {
-                var This = (ComboOnly<byte>)Obj;
+                {
+                    var This = (ComboOnly<byte>)Obj;
 
-                NSX39.GetInstance().ProgramChange(1, This.Item.Data);
-            }));
+                    NSX39.GetInstance().ProgramChange(1, This.Item.Data);
+                }));
 
 
             Controllers.Add(new TextAndButton(panel1, (Obj) =>
-            {
-                var This = (TextAndButton)Obj;
+                {
+                    var This = (TextAndButton)Obj;
 
-                NSX39.GetInstance().Lyrics(GetLyricsCode(This.Text));
-            }, GetLyricErrorPos));
+                    NSX39.GetInstance().Lyrics(GetLyricsCode(This.Text));
+                }, GetLyricErrorPos));
 
             Controllers.Add(new ToggleAndTouchButton(touchSupportedButton1, (Obj) =>
-            {
-                var This = (ToggleAndTouchButton)Obj;
+                {
+                    var This = (ToggleAndTouchButton)Obj;
 
-                if (This.On)
-                {
-                    touchSupportedButton1.BackColor = Color.Red;
-                    NSX39.GetInstance().ControlChange(0, 1, 100);
-                }
-                else
-                {
-                    touchSupportedButton1.BackColor = SystemColors.ButtonShadow;
-                    NSX39.GetInstance().ControlChange(0, 1, 0);
-                }
-            }));
+                    if (This.On)
+                    {
+                        touchSupportedButton1.BackColor = Color.Red;
+                        NSX39.GetInstance().ControlChange(0, 1, 100);
+                    }
+                    else
+                    {
+                        touchSupportedButton1.BackColor = SystemColors.ButtonShadow;
+                        NSX39.GetInstance().ControlChange(0, 1, 0);
+                    }
+                }));
 
 
             Controllers.Add(new ToggleAndTouchButton(touchSupportedButton2, (Obj) =>
-            {
-                var This = (ToggleAndTouchButton)Obj;
+                {
+                    var This = (ToggleAndTouchButton)Obj;
 
-                if (This.On)
-                {
-                    touchSupportedButton2.BackColor = Color.Red;
-                    NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 100);
-                }
-                else
-                {
-                    touchSupportedButton2.BackColor = SystemColors.ButtonShadow;
-                    NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 0);
-                }
-            }));
+                    if (This.On)
+                    {
+                        touchSupportedButton2.BackColor = Color.Red;
+                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 100);
+                    }
+                    else
+                    {
+                        touchSupportedButton2.BackColor = SystemColors.ButtonShadow;
+                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 0);
+                    }
+                }));
 
             Controllers.Add(new ComboOnly<byte>(comboBox4, Constants.VibTypes, (Obj) =>
-            {
-                var This = (ComboOnly<byte>)Obj;
+                {
+                    var This = (ComboOnly<byte>)Obj;
 
-                NSX39.GetInstance().NRPN(0, 0x70, 0x03, This.Item.Data);
-            }));
+                    NSX39.GetInstance().NRPN(0, 0x70, 0x03, This.Item.Data);
+                }));
+
 
             comboBox4.SelectedIndex = 0;
 

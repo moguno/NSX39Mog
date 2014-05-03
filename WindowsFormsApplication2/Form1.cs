@@ -36,6 +36,117 @@ namespace NSX39Mog
 
 
         /// <summary>
+        /// 歌詞文字列のエラーを検出する
+        /// </summary>
+        /// <param name="Str">歌詞文字列</param>
+        /// <returns>エラー開始位置とエラー長から成るタプルの配列</returns>
+        protected Tuple<int, int>[] GetLyricErrorPos(string Str)
+        {
+            // 主文字（単体で歌詞になるもの）
+            var MainChars = Constants.Lyrics.Select((Pair) =>
+            {
+                return Pair.Key[0];
+            }).Distinct();
+
+            // 副文字（「ゃ」とか、それ自体では歌詞にならないもの）
+            var SubChars = Constants.Lyrics.Select((Pair) =>
+            {
+                if (Pair.Key.Length >= 2)
+                {
+                    return Pair.Key[1];
+                }
+                else
+                {
+                    return (char)0;
+                }
+            }).Where(Chr => Chr != 0).Distinct();
+
+
+            var ErrorPos = new List<Tuple<int, int>>();
+            int MainCharPos = 0;
+            bool IsMainCharProcessing = false;
+
+            for (int i = 0; i < Str.Length; i++)
+            {
+                Tuple<int, int> Error = null;
+
+                // 主文字→正常
+                if (MainChars.Contains(Str[i]))
+                {
+                    IsMainCharProcessing = true;
+                    MainCharPos = i;
+                }
+                // 副文字
+                else if (SubChars.Contains(Str[i]))
+                {
+                    // 主文字の後でない→エラー
+                    if (!IsMainCharProcessing)
+                    {
+                        Error = new Tuple<int, int>(i, 1);
+                    }
+                    else
+                    {
+                        // 歌詞テーブルに存在しない主文字と副文字の組み合わせ→エラー
+                        if (!Constants.Lyrics.ContainsKey(Str.Substring(MainCharPos, 2)))
+                        {
+                            Error = new Tuple<int, int>(MainCharPos, 2);
+                        }
+                    }
+
+                    IsMainCharProcessing = false;
+                }
+                // 主文字でも副文字でもない（カタカナとかアルファベット）→エラー
+                else
+                {
+                    Error = new Tuple<int, int>(i, 1);
+
+                    IsMainCharProcessing = false;
+                }
+
+                if (Error != null)
+                {
+                    ErrorPos.Add(Error);
+                }
+            }
+
+            return ErrorPos.ToArray();
+        }
+
+        
+        /// <summary>
+        /// 歌詞コードを取得する
+        /// </summary>
+        /// <param name="Str">歌詞文字列</param>
+        /// <returns>歌詞コードの配列</returns>
+        protected byte[] GetLyricsCode(string Str)
+        {
+            var Reg = new Regex("(?<Lyric>[あ-ん][ぁぃぅぇぉゃゅょ]?)");
+            var Matches = Reg.Matches(Str);
+            var LyricArray = new List<byte>();
+
+            foreach (Match Mat in Matches)
+            {
+                byte Tmp;
+
+                if (Constants.Lyrics.TryGetValue(Mat.Value, out Tmp))
+                {
+                    LyricArray.Add(Tmp);
+                }
+                else
+                {
+                    LyricArray.Add(Constants.Lyrics["ん"]);
+                }
+            }
+
+            if (LyricArray.Count == 0)
+            {
+                LyricArray.Add(Constants.Lyrics["あ"]);
+            }
+
+            return LyricArray.ToArray();
+        }
+
+        /// <summary>
         /// ポケミクプラグアンドプレイ用のポーリングタイマ処理
         /// </summary>
         /// <param name="sender"></param>
@@ -70,179 +181,91 @@ namespace NSX39Mog
         {
 
             Controllers.Add(new ComboAndSlider(groupBox1, Constants.Reverbs, (Obj) =>
-                {
-                    var This = (ComboAndSlider)Obj;
+            {
+                var This = (ComboAndSlider)Obj;
 
-                    NSX39.GetInstance().Reverb(This.Item.Data, This.Value);
-                }
+                NSX39.GetInstance().Reverb(This.Item.Data, This.Value);
+            }
                 ));
 
 
             Controllers.Add(new ComboAndSlider(groupBox2, Constants.Choruses, (Obj) =>
-                {
-                    var This = (ComboAndSlider)Obj;
+            {
+                var This = (ComboAndSlider)Obj;
 
-                    NSX39.GetInstance().Chorus(This.Item.Data, This.Value);
-                }
+                NSX39.GetInstance().Chorus(This.Item.Data, This.Value);
+            }
                 ));
 
 
             Controllers.Add(new ComboAndSlider(groupBox3, Constants.VarEffects, (Obj) =>
-                {
-                    var This = (ComboAndSlider)Obj;
+            {
+                var This = (ComboAndSlider)Obj;
 
-                    NSX39.GetInstance().VariationEffect(This.Item.Data, This.Value);
-                }
+                NSX39.GetInstance().VariationEffect(This.Item.Data, This.Value);
+            }
                 ));
 
 
             PianoPane = new Piano(panel7, (NoteNo, NoteOn) =>
-                {
-                    NSX39.GetInstance().Note(NoteOn, 0, 12 * comboBox6.SelectedIndex + NoteNo, 100);
-                });
+            {
+                NSX39.GetInstance().Note(NoteOn, 0, 12 * comboBox6.SelectedIndex + NoteNo, 100);
+            });
 
 
             PianoPane = new Piano(panel8, (NoteNo, NoteOn) =>
-                {
-                    NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox9.SelectedItem).Data, 12 * comboBox7.SelectedIndex + NoteNo, 100);
-                });
+            {
+                NSX39.GetInstance().Note(NoteOn, ((ComboItem<int>)comboBox9.SelectedItem).Data, 12 * comboBox7.SelectedIndex + NoteNo, 100);
+            });
 
 
             Controllers.Add(new ComboOnly(comboBox8, Constants.Programs, (Obj) =>
-                {
-                    var This = (ComboOnly)Obj;
+            {
+                var This = (ComboOnly)Obj;
 
-                    NSX39.GetInstance().ProgramChange(1, This.Index);
-                }));
+                NSX39.GetInstance().ProgramChange(1, This.Index);
+            }));
 
 
             Controllers.Add(new TextAndButton(panel1, (Obj) =>
-                {
-                    var This = (TextAndButton)Obj;
+            {
+                var This = (TextAndButton)Obj;
 
-                    var Reg = new Regex("(?<Lyric>[あ-ん][ぁぃぅぇぉゃゅょ]?)");
-
-                    var Matches = Reg.Matches(This.Text);
-
-                    var LyricArray = new List<byte>();
-
-                    foreach (Match Mat in Matches)
-                    {
-                        byte Tmp;
-
-                        if (Constants.Lyrics.TryGetValue(Mat.Value, out Tmp))
-                        {
-                            LyricArray.Add(Tmp);
-                        }
-                        else
-                        {
-                            LyricArray.Add(Constants.Lyrics["ん"]);
-                        }
-                    }
-
-                    if (LyricArray.Count == 0)
-                    {
-                        LyricArray.Add(Constants.Lyrics["あ"]);
-                    }
-
-                    NSX39.GetInstance().Lyrics(LyricArray.ToArray());
-                }, (Str) =>
-                {
-                    var MainChars = Constants.Lyrics.Select((Pair) =>
-                        {
-                            return Pair.Key[0];
-                        }).Distinct();
-
-                    var SubChars = Constants.Lyrics.Select((Pair) =>
-                        {
-                            if (Pair.Key.Length >= 2)
-                            {
-                                return Pair.Key[1];
-                            }
-                            else
-                            {
-                                return (char)0;
-                            }
-                        }).Where(Chr => Chr != 0).Distinct();
-
-
-                    var ErrorPos = new List<Tuple<int, int>>();
-                    int MainCharPos = 0;
-                    bool IsMainCharProcessing = false;
-
-                    for (int i = 0; i < Str.Length; i++)
-                    {
-                        Tuple<int, int> Error = null;
- 
-                        if (MainChars.Contains(Str[i]))
-                        {
-                            IsMainCharProcessing = true;
-                            MainCharPos = i;
-                        }
-                        else if (SubChars.Contains(Str[i]))
-                        {
-                            if (!IsMainCharProcessing)
-                            {
-                                Error = new Tuple<int,int>(i, 1);
-                            }
-                            else
-                            {
-                                if (!Constants.Lyrics.ContainsKey(Str.Substring(MainCharPos, 2)))
-                                {
-                                    Error = new Tuple<int, int>(MainCharPos, 2);
-                                }
-                            }
-
-                            IsMainCharProcessing = false;
-                        }
-                        else
-                        {
-                            Error = new Tuple<int, int>(i, 1);
-
-                            IsMainCharProcessing = false;
-                        }
-
-                        if (Error != null)
-                        {
-                            ErrorPos.Add(Error);
-                        }
-                    }
-
-                    return ErrorPos.ToArray();
-                }));
+                NSX39.GetInstance().Lyrics(GetLyricsCode(This.Text));
+            }, GetLyricErrorPos));
 
             Controllers.Add(new ToggleAndTouchButton(touchSupportedButton1, (Obj) =>
-                {
-                    var This = (ToggleAndTouchButton)Obj;
+            {
+                var This = (ToggleAndTouchButton)Obj;
 
-                    if (This.On)
-                    {
-                        touchSupportedButton1.BackColor = Color.Red;
-                        NSX39.GetInstance().ControlChange(0, 1, 100);
-                    }
-                    else
-                    {
-                        touchSupportedButton1.BackColor = SystemColors.ButtonShadow;
-                        NSX39.GetInstance().ControlChange(0, 1, 0);
-                    }
-                }));
+                if (This.On)
+                {
+                    touchSupportedButton1.BackColor = Color.Red;
+                    NSX39.GetInstance().ControlChange(0, 1, 100);
+                }
+                else
+                {
+                    touchSupportedButton1.BackColor = SystemColors.ButtonShadow;
+                    NSX39.GetInstance().ControlChange(0, 1, 0);
+                }
+            }));
 
 
             Controllers.Add(new ToggleAndTouchButton(touchSupportedButton2, (Obj) =>
-                {
-                    var This = (ToggleAndTouchButton)Obj;
+            {
+                var This = (ToggleAndTouchButton)Obj;
 
-                    if (This.On)
-                    {
-                        touchSupportedButton2.BackColor = Color.Red;
-                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 100);
-                    }
-                    else
-                    {
-                        touchSupportedButton2.BackColor = SystemColors.ButtonShadow;
-                        NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 0);
-                    }
-                }));
+                if (This.On)
+                {
+                    touchSupportedButton2.BackColor = Color.Red;
+                    NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 100);
+                }
+                else
+                {
+                    touchSupportedButton2.BackColor = SystemColors.ButtonShadow;
+                    NSX39.GetInstance().ControlChange(((ComboItem<int>)comboBox9.SelectedItem).Data, 1, 0);
+                }
+            }));
 
             var VibTypes = new ComboItem<byte>[] {
                 new ComboItem<byte>() { Key = "normal", Data = 0x02 },

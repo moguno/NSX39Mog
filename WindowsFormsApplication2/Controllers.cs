@@ -119,6 +119,10 @@ namespace NSX39Mog
     }
 
 
+    /// <summary>
+    /// タッチ対応のときは押してるときだけ有効なボタン。
+    /// タッチ非対応のときはトグルボタン
+    /// </summary>
     public class ToggleAndTouchButton : Controller
     {
         protected TouchSupportedButton Button;
@@ -133,7 +137,12 @@ namespace NSX39Mog
             }
         }
 
-
+        /// <summary>
+        /// ボタンのON/OFFが切り替わったイベントを発生させる
+        /// </summary>
+        /// <param name="sender">マウスイベント発生コントロール</param>
+        /// <param name="e">マウスイベント</param>
+        /// <param name="SwitchOn">現在のボタンの状態</param>
         protected void FireButtonEvent(object sender, MouseEventArgs e, bool SwitchOn)
         {
             // タッチスクリーン対策
@@ -152,6 +161,11 @@ namespace NSX39Mog
         }
 
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="AButton">コントローラ化するタッチ対応ボタン</param>
+        /// <param name="AOnApply">コントローラの値をポケミクに送るときの処理</param>
         public ToggleAndTouchButton(TouchSupportedButton AButton, Action<Controller> AOnApply)
             : base(AOnApply)
         {

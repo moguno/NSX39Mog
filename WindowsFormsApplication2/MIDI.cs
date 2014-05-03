@@ -93,6 +93,12 @@ namespace NSX39Mog
         }
 
 
+        /// <summary>
+        /// コントロールチェンジを送信する
+        /// </summary>
+        /// <param name="Channel">MIDIチャンネル</param>
+        /// <param name="Type">CC番号</param>
+        /// <param name="Value">値</param>
         public void ControlChange(int Channel, short Type, short Value)
         {
             if (!IsActive)
@@ -105,6 +111,13 @@ namespace NSX39Mog
         }
 
 
+        /// <summary>
+        /// NRPNを送信する
+        /// </summary>
+        /// <param name="Channel">MIDIチャンネル</param>
+        /// <param name="MSB">上位バイト（ワード？）</param>
+        /// <param name="LSB">下位バイト（ワード？）</param>
+        /// <param name="Data">値</param>
         public void NRPN(int Channel, short MSB, short LSB, short Data)
         {
             if (!IsActive)
@@ -118,6 +131,7 @@ namespace NSX39Mog
             CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 98, LSB));
             CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 6, Data));
 
+            // NRPN番号をリセット
             CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 101, 127));
             CCs.Add(new ChannelMessage(ChannelCommand.Controller, Channel, 100, 127));
 
